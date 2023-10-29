@@ -82,6 +82,7 @@ To keep it simple, VelocitySimplePermission does not provide commands to modify 
 
 If you want to modify the permission configuration, you need edit the permission file manually, then use command to perform a reload
 
+Require permission `velocitysimplepermission.command`
 
 Command list:
 
