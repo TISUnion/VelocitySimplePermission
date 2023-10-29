@@ -8,10 +8,39 @@ Tested with velocity `3.2.0`
 
 ## Permission file
 
-The top-level yaml object is a string to object map.
-The key is the permission key, e.g. `"velocity.command.glist"`. The value is the assignment of the permission.
+The top-level yaml object is a string to object map, defining a series of permission assignments
 
-The value can be one of the following things:
+Here's an example of the permission file, that allows everyone to use the `/glist` command, 
+and allow specified admins to use all velocity commands:
+
+```yaml
+velocity.command.glist: '*'
+velocity.command.*: 
+- NameOfAdmin1
+- NameOfAdmin2
+- 8e99eeb6-204e-4bde-9764-87e122c272ed  # uuid of the admin3
+```
+
+### Key
+
+The key defines what the permission assignment will be applied on. It can be one of the following things:
+
+1. A complete permission key (e.g. `example.command.foo`),
+   which matches the given key exactly
+2. A wildcard permission key ends with `*` (e.g. `example.command.*`), 
+   which matches all sub-keys under the given wildcard key (e.g. `example.command.oof`, `example.command.foo.bar`, but not `example.action`)
+
+The matching priority is:
+
+1. Complete key (e.g. `example.command.foo`)
+2. Longest wildcard key to the shortest wildcard key (e.g. `example.command.foo.*`, `example.command.*`, `example.*`, `*`)
+
+If any candidate key has a valid value, and the value returns a known query result (i.e. not `Tristate.UNDEFINED`),
+then the result will be returned immediately, no more further query attempts will be made
+
+### Value
+
+The value is the assignment of the permission. It can be one of the following things:
 
 1. A `"*"`, means all players have this permission (`Tristate.TRUE`)
 
@@ -46,7 +75,3 @@ The value can be one of the following things:
 If the queried permission is unknown, or the player is not included in the list, 
 the plugin will simply return the undefined permission `Tristate.UNDEFINED` to velocity, 
 which is also the default behavior when there's no permission provider plugin installed
-
-## TODO
-
-- [ ] Hot reload via command
