@@ -46,3 +46,7 @@ The value can be one of the following things:
 If the queried permission is unknown, or the player is not included in the list, 
 the plugin will simply return the undefined permission `Tristate.UNDEFINED` to velocity, 
 which is also the default behavior when there's no permission provider plugin installed
+
+## TODO
+
+- [ ] Hot reload via command
