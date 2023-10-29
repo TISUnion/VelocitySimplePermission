@@ -69,7 +69,6 @@ public class SimplePermissionProvider implements PermissionProvider, PermissionF
 
 	public Tristate getPermissionFromKey(String permissionKey)
 	{
-		System.out.printf("%s %s\n", this.playerName, permissionKey);
 		Object obj = this.permissions.get(permissionKey);
 		if (obj instanceof Map)
 		{
