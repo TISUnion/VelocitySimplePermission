@@ -75,3 +75,14 @@ The value is the assignment of the permission. It can be one of the following th
 If the queried permission is unknown, or the player is not included in the list, 
 the plugin will simply return the undefined permission `Tristate.UNDEFINED` to velocity, 
 which is also the default behavior when there's no permission provider plugin installed
+
+## Command
+
+To keep it simple, VelocitySimplePermission does not provide commands to modify the permission assignments
+
+If you want to modify the permission configuration, you need edit the permission file manually, then use command to perform a reload
+
+
+Command list:
+
+- `/vsp reload`: reload the permission file

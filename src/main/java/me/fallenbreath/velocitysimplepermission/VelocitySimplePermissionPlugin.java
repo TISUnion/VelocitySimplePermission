@@ -36,6 +36,7 @@ public class VelocitySimplePermissionPlugin
 	{
 		this.permissionStorage.load();
 		this.server.getEventManager().register(this, PermissionsSetupEvent.class, this::setupPermission);
+		new VspCommand(this.permissionStorage).register(this.server.getCommandManager());
 	}
 
 	private void setupPermission(PermissionsSetupEvent event)
